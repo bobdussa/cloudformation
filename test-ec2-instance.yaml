@@ -1,0 +1,44 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Metadata:
+    Generator: "console-recorder"
+Description: "Test EC2 instance for sandboxing"
+Resources:
+    ec20b7e926:
+        Type: "AWS::EC2::Instance"
+        Properties:
+            ImageId: "ami-01e3b8c3a51e88954"
+            KeyName: "genadmin"
+            InstanceType: "t2.micro"
+            Tenancy: "default"
+            Monitoring: "false"
+            DisableApiTermination: "false"
+            InstanceInitiatedShutdownBehavior: "stop"
+            CreditSpecification: 
+                CPUCredits: "standard"
+            Tags: 
+                ResourceType: "instance"
+                Tag: 
+                    Key: "Name"
+                    Value: "test"
+                    Key: "Department"
+                    Value: "sandbox"
+                ResourceType: "volume"
+                Tag: 
+                    Key: "Name"
+                    Value: "test"
+                    Key: "Department"
+                    Value: "sandbox"
+            EbsOptimized: "false"
+            BlockDeviceMappings: 
+                DeviceName: "/dev/xvda"
+                Ebs: 
+                    VolumeSize: 8
+                    DeleteOnTermination: "true"
+                    VolumeType: "gp2"
+            NetworkInterfaces: 
+                DeviceIndex: 0
+                Description: "Primary network interface"
+                DeleteOnTermination: "true"
+                SubnetId: "subnet-a779a399"
+                Groups: "sg-0b237ffb648403ab3"
+                Ipv6AddressCount: 0
